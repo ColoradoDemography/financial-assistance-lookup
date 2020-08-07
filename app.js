@@ -119,7 +119,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
     else {document.getElementById("eiaf").innerHTML = numeral(eiafGrants).format();
           document.getElementById("eiafrow").style.display = "table-row";}
   
-    if(sevGrants == 0){document.getElementById("ddrow").style.display = "none";}
+    if(sevGrants+fmlGrants == 0){document.getElementById("ddrow").style.display = "none";}
     else {document.getElementById("directdist").innerHTML = numeral(sevGrants+fmlGrants).format();
           document.getElementById("ddrow").style.display = "table-row";}
 
@@ -160,7 +160,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           document.getElementById("msrow").style.display = "table-row";}
 
     if(sarGrants == 0){document.getElementById("sarrow").style.display = "none";}
-    else {document.getElementById("sar").innerHTML = numeral(MS).format();
+    else {document.getElementById("sar").innerHTML = numeral(sarGrants).format();
           document.getElementById("sarrow").style.display = "table-row";}
 
     if(POMH == 0){document.getElementById("pomhrow").style.display = "none";}
