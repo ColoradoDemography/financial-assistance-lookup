@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Horizontal Bar Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.3/papaparse.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.4/numeral.min.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	<script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css">
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+</head>
+
+<body>
+
+<!--<p><img src="https://cdola.colorado.gov/sites/dola/files/logo.svg" height="30px"></img>-->
+<p><img src="dola.png" height="30px"></img>    
+  <br/>Financial Assistance County Totals Lookup
+</p>
+<div id="selectView">
+  <div id="content-selection">
+    <h2>Location</h2> <br />
+    <select id="getCounty">
+
+    <option value="Invalid">Select County
+
+    <option value="Adams"> Adams County
+    <option value="Alamosa"> Alamosa County
+    <option value="Arapahoe"> Arapahoe County
+    <option value="Archuleta"> Archuleta County
+    <option value="Baca"> Baca County
+    <option value="Bent"> Bent County
+    <option value="Boulder"> Boulder County
+    <option value="Broomfield"> Broomfield County
+    <option value="Chaffee"> Chaffee County
+    <option value="Cheyenne"> Cheyenne County
+    <option value="Clear Creek"> Clear Creek County
+    <option value="Conejos"> Conejos County
+    <option value="Costilla"> Costilla County
+    <option value="Crowley"> Crowley County
+    <option value="Custer"> Custer County
+    <option value="Delta"> Delta County
+    <option value="Denver"> Denver County
+    <option value="Dolores"> Dolores County
+    <option value="Douglas"> Douglas County
+    <option value="Eagle"> Eagle County
+    <option value="El Paso"> El Paso County
+    <option value="Elbert"> Elbert County
+    <option value="Fremont"> Fremont County
+    <option value="Garfield"> Garfield County
+    <option value="Gilpin"> Gilpin County
+    <option value="Grand"> Grand County
+    <option value="Gunnison"> Gunnison County
+    <option value="Hinsdale"> Hinsdale County
+    <option value="Huerfano"> Huerfano County
+    <option value="Jackson"> Jackson County
+    <option value="Jefferson"> Jefferson County
+    <option value="Kiowa"> Kiowa County
+    <option value="Kit Carson"> Kit Carson County
+    <option value="La Plata"> La Plata County
+    <option value="Lake"> Lake County
+    <option value="Larimer"> Larimer County
+    <option value="Las Animas"> Las Animas County
+    <option value="Lincoln"> Lincoln County
+    <option value="Logan"> Logan County
+    <option value="Mesa"> Mesa County
+    <option value="Mineral"> Mineral County
+    <option value="Moffat"> Moffat County
+    <option value="Montezuma"> Montezuma County
+    <option value="Montrose"> Montrose County
+    <option value="Morgan"> Morgan County
+    <option value="Otero"> Otero County
+    <option value="Ouray"> Ouray County
+    <option value="Park"> Park County
+    <option value="Phillips"> Phillips County
+    <option value="Pitkin"> Pitkin County
+    <option value="Prowers"> Prowers County
+    <option value="Pueblo"> Pueblo County
+    <option value="Rio Blanco"> Rio Blanco County
+    <option value="Rio Grande"> Rio Grande County
+    <option value="Routt"> Routt County
+    <option value="Saguache"> Saguache County
+    <option value="San Juan"> San Juan County
+    <option value="San Miguel"> San Miguel County
+    <option value="Sedgwick"> Sedgwick County
+    <option value="Summit"> Summit County
+    <option value="Teller"> Teller County
+    <option value="Washington"> Washington County
+    <option value="Weld"> Weld County
+    <option value="Yuma"> Yuma County
+   
+</select><br />
+    <h2>Time period</h2> <br />
+    <select id="getYear">
+    <option value="invalid date">From
+    <option value="1-1-12"> 2012
+    <option value="1-1-13"> 2013
+    <option value="1-1-14"> 2014
+    <option value="1-1-15"> 2015
+    <option value="1-1-16"> 2016
+    <option value="1-1-17"> 2017
+    <option value="1-1-18"> 2018
+    <option value="1-1-19"> 2019
+    <option value="1-1-20"> 2020
+  </select>
+
+    <select id="toYear">
+    <option value="invalid date">To
+    <option value="12-31-12"> 2012
+    <option value="12-31-13"> 2013
+    <option value="12-31-14"> 2014
+    <option value="12-31-15"> 2015
+    <option value="12-31-16"> 2016
+    <option value="12-31-17"> 2017
+    <option value="12-31-18"> 2018
+    <option value="12-31-19"> 2019
+    <option value="12-31-20"> 2020
+  </select>
+
+    <br />
+
+    <button id="submit" onclick="parse()"> SUBMIT
+  </button>
+  </div>
+
+
+</div>
+<div id="detailView">
+
+  <div id="datatable" style="width:400px;">
+
+    <h1><span id="county"></h1><span id="year"></span>
+    <table>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><b><span>Total Financial Assistance</span></b></td>
+        <td><b><span id="totals"></span></b></td>
+      </tr>
+            <tr>
+        <td><span class="indent">Coronavirus Relief Fund</span></td>
+        <td><span id="cvrf"></span></td>
+      </tr> 
+      <tr>
+        <td><span class="indent">Conservation Trust Fund</span></td>
+        <td><span id="ctf"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Energy/Mineral Impact Assistance Fund</span></td>
+        <td><span id="eiaf"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Direct Distribution</span></td>
+        <td><span id="directdist"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Volunteer Firefighter Pension Fund</span></td>
+        <td><span id="vfp"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Firefighter Cardiac Benefit</span></td>
+        <td><span id="ffb"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Community Development Block Grant</span></td>
+        <td><span id="cdbg"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Community Services Block Grant</span></td>
+        <td><span id="csbg"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Rural Economic Development Initiative</span></td>
+        <td><span id="redi"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Limited Gaming Impact</span></td>
+        <td><span id="game"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Marijuana Impact</span></td>
+        <td><span id="mj"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Disaster Recovery</span></td>
+        <td><span id="dr"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Main Street Program</span></td>
+        <td><span id="ms"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Colorado Search and Rescue</span></td>
+        <td><span id="sar"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Peace Officer Mental Health Support</span></td>
+        <td><span id="pomh"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Defense Counsel of First Appearance</span></td>
+        <td><span id="dcfa"></span></td>
+      </tr>
+      <tr>
+        <td><span class="indent">Community Crime Prevention Initiative</span></td>
+        <td><span id="ccpi"></span></td>
+      </tr> 
+      <tr>
+        <td><span class="indent">Colorado Heritage Planning Grants</span></td>
+        <td><span id="chpg"></span></td>
+      </tr>    
+    </table>
+    <br/><br/>
+  </div>
+  <div id="chartView">
+    <div id="pieChart" class='item'></div>
+    <!--<div id="mobileError"><p>This tool does not work on mobile devices, please return on a Desktop computer.</p></div>-->
+  </div>
+</div>
+    
+</body>
+</html>
