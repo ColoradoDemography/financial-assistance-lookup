@@ -110,25 +110,78 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
   document.getElementById("county").innerHTML = searchCounty + " County";
   document.getElementById("year").innerHTML = " from " + searchYear + " to " + toYear;
   document.getElementById("totals").innerHTML = numeral(totalGrants).format();
-  document.getElementById("ctf").innerHTML = numeral(ctfGrants).format();
-  document.getElementById("eiaf").innerHTML = numeral(eiafGrants).format();
-  document.getElementById("directdist").innerHTML = numeral(sevGrants+fmlGrants).format();
-//  document.getElementById("fml").innerHTML = numeral(fmlGrants).format();
-  document.getElementById("vfp").innerHTML = numeral(vfpGrants).format();
-  document.getElementById("ffb").innerHTML = numeral(ffbGrants).format();
-  document.getElementById("cdbg").innerHTML = numeral(cdbgGrants).format();
-  document.getElementById("csbg").innerHTML = numeral(csbgGrants).format();
-  document.getElementById("redi").innerHTML = numeral(rediGrants).format();
-  document.getElementById("game").innerHTML = numeral(gamingGrants).format();
-  document.getElementById("mj").innerHTML = numeral(mjGrants).format();
-  document.getElementById("dr").innerHTML = numeral(DR).format();
-  document.getElementById("ms").innerHTML = numeral(MS).format();
-  document.getElementById("sar").innerHTML = numeral(MS).format();
-  document.getElementById("pomh").innerHTML = numeral(POMH).format();
-  document.getElementById("dcfa").innerHTML = numeral(DCFA).format();
-  document.getElementById("ccpi").innerHTML = numeral(CCPI).format();
-  document.getElementById("chpg").innerHTML = numeral(CHPG).format();    
-  document.getElementById("cvrf").innerHTML = numeral(CVRF).format();
+  
+    if(ctfGrants == 0){document.getElementById("ctfrow").style.display = "none";}
+    else {document.getElementById("ctf").innerHTML = numeral(ctfGrants).format();
+          document.getElementById("ctfrow").style.display = "table-row";}
+  
+    if(eiafGrants == 0){document.getElementById("eiafrow").style.display = "none";}
+    else {document.getElementById("eiaf").innerHTML = numeral(eiafGrants).format();
+          document.getElementById("eiafrow").style.display = "table-row";}
+  
+    if(sevGrants == 0){document.getElementById("ddrow").style.display = "none";}
+    else {document.getElementById("directdist").innerHTML = numeral(sevGrants+fmlGrants).format();
+          document.getElementById("ddrow").style.display = "table-row";}
+
+    if(vfpGrants == 0){document.getElementById("vfprow").style.display = "none";}
+    else {document.getElementById("vfp").innerHTML = numeral(vfpGrants).format();
+          document.getElementById("vfprow").style.display = "table-row";}
+
+    if(ffbGrants == 0){document.getElementById("ffbrow").style.display = "none";}
+    else {document.getElementById("ffb").innerHTML = numeral(ffbGrants).format();
+          document.getElementById("ffbrow").style.display = "table-row";}
+
+    if(cdbgGrants == 0){document.getElementById("cdbgrow").style.display = "none";}
+    else {document.getElementById("cdbg").innerHTML = numeral(cdbgGrants).format();
+          document.getElementById("cdbgrow").style.display = "table-row";}
+  
+    if(csbgGrants == 0){document.getElementById("csbgrow").style.display = "none";}
+    else {document.getElementById("csbg").innerHTML = numeral(csbgGrants).format();
+          document.getElementById("csbgrow").style.display = "table-row";}
+
+    if(rediGrants == 0){document.getElementById("redirow").style.display = "none";}
+    else {document.getElementById("redi").innerHTML = numeral(rediGrants).format();
+          document.getElementById("redirow").style.display = "table-row";}
+
+    if(gamingGrants == 0){document.getElementById("gamerow").style.display = "none";}
+    else {document.getElementById("game").innerHTML = numeral(gamingGrants).format();
+          document.getElementById("gamerow").style.display = "table-row";}
+
+    if(mjGrants == 0){document.getElementById("mjrow").style.display = "none";}
+    else {document.getElementById("mj").innerHTML = numeral(mjGrants).format();
+          document.getElementById("mjrow").style.display = "table-row";}
+  
+    if(DR == 0){document.getElementById("drrow").style.display = "none";}
+    else {document.getElementById("dr").innerHTML = numeral(DR).format();
+          document.getElementById("drrow").style.display = "table-row";}
+
+    if(MS == 0){document.getElementById("msrow").style.display = "none";}
+    else {document.getElementById("ms").innerHTML = numeral(MS).format();
+          document.getElementById("msrow").style.display = "table-row";}
+
+    if(sarGrants == 0){document.getElementById("sarrow").style.display = "none";}
+    else {document.getElementById("sar").innerHTML = numeral(MS).format();
+          document.getElementById("sarrow").style.display = "table-row";}
+
+    if(POMH == 0){document.getElementById("pomhrow").style.display = "none";}
+    else {document.getElementById("pomh").innerHTML = numeral(POMH).format();
+          document.getElementById("pomhrow").style.display = "table-row";}
+
+    if(DCFA == 0){document.getElementById("dcfarow").style.display = "none";}
+    else {document.getElementById("dcfa").innerHTML = numeral(DCFA).format();
+          document.getElementById("dcfarow").style.display = "table-row";}
+
+    if(CCPI == 0){document.getElementById("ccpirow").style.display = "none";}
+    else {document.getElementById("ccpi").innerHTML = numeral(CCPI).format();
+          document.getElementById("ccpirow").style.display = "table-row";}
+
+    if(CHPG == 0){document.getElementById("chpgrow").style.display = "none";}
+    else {document.getElementById("chpg").innerHTML = numeral(CHPG).format();
+          document.getElementById("chpgrow").style.display = "table-row";}
+  
+if(CVRF == 0){document.getElementById("cvrfrow").style.display = "none";}
+    else {document.getElementById("cvrf").innerHTML = numeral(CVRF).format();
+         document.getElementById("cvrfrow").style.display = "table-row";}
 
   document.getElementById("datatable").style.display = "inline";
 

@@ -5,7 +5,7 @@
 }
 
 html, body {
-    height: 100%;
+    height:100%;
 }
 
 
@@ -99,7 +99,7 @@ p {
 
 
 #chartView {
-  right: 10%;
+  right: 5%;
   position: fixed;
   width: 50%;
   padding-top: 1%;
@@ -132,7 +132,7 @@ p {
   
   #chartView{
     margin: 0 auto;
-    position: relative;
+    position: fixed;
     right: 0;
     width: 80%;
   }
