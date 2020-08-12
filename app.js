@@ -13,6 +13,7 @@ function parse() {
  
  parseData(
     "https://storage.googleapis.com/co-publicdata/grants.csv",
+    //"grants.csv",
     calcTotals,
     searchCounty,
     searchYear,
@@ -230,7 +231,6 @@ if(CVRF == 0){document.getElementById("cvrfrow").style.display = "none";}
             values : [ctfGrants],
           text: "Conservation Trust Fund",
           backgroundColor: '#a6cee3',
-      
         },
         {
           values: [eiafGrants],
@@ -270,7 +270,7 @@ if(CVRF == 0){document.getElementById("cvrfrow").style.display = "none";}
         {
           text: 'Marijuana Impact',
           values: [mjGrants],
-          backgroundColor: '#ffff99'
+          backgroundColor: '#fee52f'
         },
         {
           text: 'Colorado Search and Rescue',
