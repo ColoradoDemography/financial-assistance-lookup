@@ -1,29 +1,30 @@
 numeral.defaultFormat("($0.00a)");
 numeral.zeroFormat("N/A");
 numeral.nullFormat("N/A");
+    
 
 function parse() {
-  var searchCounty = document.getElementById("getCounty").value;
-  var searchYear = document.getElementById("getYear").value;
-  var toYear = document.getElementById("toYear").value;
-  
-  if (searchYear >= toYear) 
-    alert("Please correct the year selections.");
-  
- 
- parseData(
-    "https://storage.googleapis.com/co-publicdata/grants.csv",
-    //"grants.csv",
-    calcTotals,
-    searchCounty,
-    searchYear,
-    toYear
-  );
+    var searchCounty = document.getElementById("getCounty").value;
+    var searchYear = document.getElementById("getYear").value;
+    var toYear = document.getElementById("toYear").value;
+
+    if (searchYear >= toYear) 
+        alert("Please correct the year selections.");
+
+
+    parseData(
+        'https://storage.googleapis.com/co-publicdata/grants.csv',
+        calcTotals,
+        searchCounty,
+        searchYear,
+        toYear
+        );
 }
 
 
-function parseData(url, callBack, searchCounty, searchYear, toYear) {
-  Papa.parse(url, {
+function parseData(file, callBack, searchCounty, searchYear, toYear) {
+
+    Papa.parse(file, {
     download: true,
     dynamicTyping: true,
     header: true,
@@ -37,8 +38,11 @@ function parseData(url, callBack, searchCounty, searchYear, toYear) {
 
 
 function calcTotals(data, searchCounty, searchYear, toYear) {
+
   var json = Papa.unparse(data);
-  
+  var sYr = searchYear.slice(-2);
+  var tYr = toYear.slice(-2);
+    
   var totalGrants = 0;
   var ctfGrants = 0;
   var fmlGrants = 0;
@@ -60,9 +64,14 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
   var CHPG = 0;
   var CVRF = 0;
 
-  for (i = 0; i < data.length; i++) {
-    if (Date.parse(data[i].dateofaward) >= Date.parse(searchYear) && Date.parse(data[i].dateofaward) <= Date.parse(toYear)) {
-      if (data[i].county.indexOf(searchCounty) >= 0) {
+    for (i = 0; i < data.length; i++) {
+    if (data[i].dateofaward !== undefined){
+    
+    var doa = data[i].dateofaward.slice(-2);
+    
+    if (doa >= sYr && doa <= tYr) {  
+
+        if (data[i].county.indexOf(searchCounty) >= 0) {
         totalGrants += data[i].award;
 
         if (data[i].program == "CTF") {
@@ -107,6 +116,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
       }
     }
   }
+    }
 
   document.getElementById("county").innerHTML = searchCounty + " County";
   document.getElementById("year").innerHTML = " from " + searchYear + " to " + toYear;
@@ -180,7 +190,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
     else {document.getElementById("chpg").innerHTML = numeral(CHPG).format();
           document.getElementById("chpgrow").style.display = "table-row";}
   
-if(CVRF == 0){document.getElementById("cvrfrow").style.display = "none";}
+    if(CVRF == 0){document.getElementById("cvrfrow").style.display = "none";}
     else {document.getElementById("cvrf").innerHTML = numeral(CVRF).format();
          document.getElementById("cvrfrow").style.display = "table-row";}
 
