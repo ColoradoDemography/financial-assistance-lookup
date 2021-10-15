@@ -80,11 +80,11 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           fmlGrants += data[i].award;
         } else if (data[i].program == "EIAF") {
           eiafGrants += data[i].award;
-        } else if (data[i].program == "SEV_DIST") {
+        } else if (data[i].program == "SEV/FML") {
           sevGrants += data[i].award;
         } else if (data[i].program == "VFP") {
           vfpGrants += data[i].award;
-        } else if (data[i].program == "FFB") {
+        } else if (data[i].program == "FCB") {
           ffbGrants += data[i].award;
         } else if (data[i].program == "CDBG" || data[i].program == "CDBGED" || data[i].program == "CDBGPF") {
           cdbgGrants += data[i].award;
@@ -110,7 +110,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           CCPI += data[i].award;
         } else if (data[i].program == "CHPG") {
           CHPG += data[i].award;
-        } else if (data[i].program == "CVRF") {
+        } else if (data[i].program == "CVRF" || data[i].program == "NEU" || data[i].program == "MSOB") {
           CVRF += data[i].award;
         }  
       }
