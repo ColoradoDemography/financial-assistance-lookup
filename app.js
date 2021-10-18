@@ -65,6 +65,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
   var CVRF = 0;
   var NEU = 0;
   var MSOB = 0;
+  var SBR = 0;
 
     for (i = 0; i < data.length; i++) {
     if (data[i].dateofaward !== undefined){
@@ -118,7 +119,9 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           NEU += data[i].award;
         } else if (data[i].program == "MSOB") {
           MSOB += data[i].award;
-        }  
+        } else if (data[i].program == "SBR") {
+          SBR += data[i].award;
+        } 
       }
     }
   }
@@ -207,6 +210,10 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
     if(MSOB == 0){document.getElementById("msobrow").style.display = "none";}
     else {document.getElementById("msob").innerHTML = numeral(MSOB).format();
           document.getElementById("msobrow").style.display = "table-row";}
+
+    if(SBR == 0){document.getElementById("sbrrow").style.display = "none";}
+    else {document.getElementById("sbr").innerHTML = numeral(MSOB).format();
+          document.getElementById("sbrrow").style.display = "table-row";}
 
   document.getElementById("datatable").style.display = "inline";
 
@@ -337,7 +344,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           backgroundColor: '#2b3840'
         },
         {
-          text: 'American Rescue Plan Act: Non-Entitlement Units',
+          text: 'American Rescue Plan Act: NEU',
           values: [NEU],
           backgroundColor: '#7b03fc'
         },
@@ -345,6 +352,11 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           text: 'Main Street: Open for Business',
           values: [MSOB],
           backgroundColor: '#fcba03'
+        },
+        {
+          text: 'Small Business Relief Program',
+          values: [SBR],
+          backgroundColor: '#2596be'
         }
     ]
 }
