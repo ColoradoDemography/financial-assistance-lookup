@@ -63,6 +63,8 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
   var CCPI = 0;
   var CHPG = 0;
   var CVRF = 0;
+  var NEU = 0;
+  var MSOB = 0;
 
     for (i = 0; i < data.length; i++) {
     if (data[i].dateofaward !== undefined){
@@ -110,8 +112,12 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           CCPI += data[i].award;
         } else if (data[i].program == "CHPG") {
           CHPG += data[i].award;
-        } else if (data[i].program == "CVRF" || data[i].program == "NEU" || data[i].program == "MSOB") {
+        } else if (data[i].program == "CVRF") {
           CVRF += data[i].award;
+        } else if (data[i].program == "NEU") {
+          NEU += data[i].award;
+        } else if (data[i].program == "MSOB") {
+          MSOB += data[i].award;
         }  
       }
     }
@@ -193,6 +199,14 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
     if(CVRF == 0){document.getElementById("cvrfrow").style.display = "none";}
     else {document.getElementById("cvrf").innerHTML = numeral(CVRF).format();
          document.getElementById("cvrfrow").style.display = "table-row";}
+
+    if(NEU == 0){document.getElementById("neurow").style.display = "none";}
+    else {document.getElementById("neu").innerHTML = numeral(NEU).format();
+        document.getElementById("neurow").style.display = "table-row";}
+
+    if(MSOB == 0){document.getElementById("msobrow").style.display = "none";}
+    else {document.getElementById("msob").innerHTML = numeral(MSOB).format();
+          document.getElementById("msobrow").style.display = "table-row";}
 
   document.getElementById("datatable").style.display = "inline";
 
@@ -321,6 +335,16 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           text: 'Coronavirus Relief Funds',
           values: [CVRF],
           backgroundColor: '#2b3840'
+        },
+        {
+          text: 'American Rescue Plan Act: Non-Entitlement Units',
+          values: [NEU],
+          backgroundColor: '#7b03fc'
+        },
+        {
+          text: 'Main Street: Open for Business',
+          values: [MSOB],
+          backgroundColor: '#fcba03'
         }
     ]
 }
