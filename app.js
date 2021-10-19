@@ -212,7 +212,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           document.getElementById("msobrow").style.display = "table-row";}
 
     if(SBR == 0){document.getElementById("sbrrow").style.display = "none";}
-    else {document.getElementById("sbr").innerHTML = numeral(MSOB).format();
+    else {document.getElementById("sbr").innerHTML = numeral(SBR).format();
           document.getElementById("sbrrow").style.display = "table-row";}
 
   document.getElementById("datatable").style.display = "inline";
