@@ -64,7 +64,10 @@ h1 {
  display: none;
  left: 15%;
  position: fixed;
- padding-left: 1%;
+ padding-left: 0%;
+ width: 35%;
+ height: 600px;
+ overflow-y: scroll;
 }
 
 
@@ -100,7 +103,7 @@ p {
 
 #chartView {
   right: 5%;
-  position: fixed;
+  float: right;
   width: 50%;
   padding-top: 1%;
 }

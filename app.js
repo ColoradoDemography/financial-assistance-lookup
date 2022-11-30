@@ -66,6 +66,8 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
   var NEU = 0;
   var MSOB = 0;
   var SBR = 0;
+  var IHOI = 0;
+  var IHOP = 0;
 
     for (i = 0; i < data.length; i++) {
     if (data[i].dateofaward !== undefined){
@@ -121,6 +123,10 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           MSOB += data[i].award;
         } else if (data[i].program == "SBR") {
           SBR += data[i].award;
+        } else if (data[i].program == "IHOI") {
+          IHOI += data[i].award;
+        } else if (data[i].program == "IHOP") {
+          IHOP += data[i].award;
         } 
       }
     }
@@ -214,6 +220,14 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
     if(SBR == 0){document.getElementById("sbrrow").style.display = "none";}
     else {document.getElementById("sbr").innerHTML = numeral(SBR).format();
           document.getElementById("sbrrow").style.display = "table-row";}
+
+    if(IHOI == 0){document.getElementById("ihoirow").style.display = "none";}
+    else {document.getElementById("ihoi").innerHTML = numeral(IHOI).format();
+          document.getElementById("ihoirow").style.display = "table-row";}
+
+    if(IHOP == 0){document.getElementById("ihoprow").style.display = "none";}
+    else {document.getElementById("ihop").innerHTML = numeral(IHOP).format();
+          document.getElementById("ihoprow").style.display = "table-row";}
 
   document.getElementById("datatable").style.display = "inline";
 
@@ -357,6 +371,16 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
           text: 'Small Business Relief Program',
           values: [SBR],
           backgroundColor: '#2596be'
+        },
+        {
+          text: 'Housing Incentive Grant Program',
+          values: [IHOI],
+          backgroundColor: '#e53226'
+        },
+        {
+          text: 'Housing Planning Grant Program',
+          values: [IHOP],
+          backgroundColor: '#7f241e'
         }
     ]
 }
