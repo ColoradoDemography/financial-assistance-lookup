@@ -134,7 +134,7 @@ function calcTotals(data, searchCounty, searchYear, toYear) {
     }
 
   document.getElementById("county").innerHTML = searchCounty + " County";
-  document.getElementById("year").innerHTML = " from " + searchYear + " to " + toYear;
+  document.getElementById("year").innerHTML = " &nbsp&nbsp&nbspfrom " + searchYear + " to " + toYear;
   document.getElementById("totals").innerHTML = numeral(totalGrants).format();
   
     if(ctfGrants == 0){document.getElementById("ctfrow").style.display = "none";}
